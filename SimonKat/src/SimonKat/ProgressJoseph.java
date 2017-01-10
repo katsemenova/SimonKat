@@ -17,7 +17,8 @@ public class ProgressJoseph extends Component implements ProgressInterfaceKat {
 	
 	public ProgressJoseph() {
 		super(30, 30, width, height);
-		
+		gameOver=false;
+		update();
 	}  
 
 	@Override
