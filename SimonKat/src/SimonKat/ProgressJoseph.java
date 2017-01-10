@@ -2,6 +2,7 @@ package SimonKat;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
@@ -42,18 +43,20 @@ public class ProgressJoseph extends Component implements ProgressInterfaceKat {
 	@Override
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.lightGray);
-		g.fillRect(0, 0, width, height);
-		int fontSize = 15;
+		FontMetrics fm = g.getFontMetrics();	
+		int fontSize = 10;
 	    g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-		g.setColor(Color.black);
-		
 		if(!gameOver){
-			g.drawString("Round "+ setRound, 20, 35);
-			g.drawString("Sequence "+ setSequenceSize, 20, 55);
-		}
-		else{
-			g.drawString("Game over", 35,110);
+			g.setColor(Color.lightGray);
+			g.fillRect(0, 0, width, height);
+			g.setColor(Color.black);
+			g.drawString("Round: "+setRound, 20, 35);
+			g.drawString("Sequence length: "+setSequenceSize, 20, 55);
+		}else{
+			g.setColor(Color.red);
+			g.fillRect(0, 0, width, height);
+			g.setColor(Color.black);
+			g.drawString("Game over", 20,45);
 		}
 	}
 
