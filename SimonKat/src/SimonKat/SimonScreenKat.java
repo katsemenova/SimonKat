@@ -55,7 +55,8 @@ public class SimonScreenKat extends ClickableScreen implements Runnable {
 			
 			b=moves.get(i).getButton();
 			b.highlight();
-			int sleepTime=1000*(int)Math.exp(roundNumber);
+			
+			int sleepTime=1000*(int)Math.exp(roundNumber/2);
 			try {
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
@@ -117,12 +118,12 @@ public class SimonScreenKat extends ClickableScreen implements Runnable {
 
 	public void addButtons(ArrayList<Visible> viewObjects) {
 		int numberOfButtons=6;
-		Color[] color={ Color.blue, Color.black, Color.red, Color.green, Color.orange, Color.cyan };
+		Color[] color={ Color.blue, Color.red, Color.green, Color.pink, Color.orange, Color.magenta };
 		button = new ButtonInterfaceKat[numberOfButtons];
 		for(int i=0;i<numberOfButtons;i++){
 			button[i]=getAButton();
 			button[i].setColor(color[i]);
-			button[i].setX(110+i*50);
+			button[i].setX(110+i*60);
 			button[i].setY(200);
 			final ButtonInterfaceKat b = button[i];
 			b.dim();
