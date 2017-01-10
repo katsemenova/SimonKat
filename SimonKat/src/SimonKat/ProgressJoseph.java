@@ -17,20 +17,20 @@ public class ProgressJoseph extends Component implements ProgressInterfaceKat {
 	public ProgressJoseph() {
 		super(50, 50, width, height);
 		// TODO Auto-generated constructor stub
-	}
+	}  
 
 	@Override
 	public void gameOver() {
 		gameOver = true;
 		update();
-	}
+	}  
 
 	@Override
 	public void setRound(int roundNumber) {
 		this.setRound = roundNumber;
 		update();
 	}
-
+ 
 	@Override
 	public void setSequenceSize(int size) {
 		this.setSequenceSize = size;
@@ -42,12 +42,13 @@ public class ProgressJoseph extends Component implements ProgressInterfaceKat {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(Color.white);
 		g.fillRect(100, 100, width, height);
-		
+		g.setColor(Color.black);
 		if(!gameOver){
-			
+			g.drawString("Round "+ setRound, getX(), getY());
+			g.drawString("Sequence "+ setSequenceSize, getX(), getY());
 		}
 		else{
-			
+			g.drawString("Game over", getX(),getY());
 		}
 	}
 
