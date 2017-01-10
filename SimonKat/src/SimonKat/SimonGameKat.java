@@ -5,7 +5,7 @@ import guiPractice.GUIApplication;
 
 public class SimonGameKat extends GUIApplication {
 
-	public SimonGameKat() {
+	public SimonGameKat(int width, int height) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -16,7 +16,7 @@ public class SimonGameKat extends GUIApplication {
 	}
 
 	public static void main(String[] args) {
-		SimonGameKat game = new SimonGameKat();
+		SimonGameKat game = new SimonGameKat(800,500);
 		Thread app = new Thread(game);
 		app.start();
 	}

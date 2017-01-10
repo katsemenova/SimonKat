@@ -12,12 +12,12 @@ public class ButtonJoseph extends Component implements ButtonInterfaceKat {
 	private Color color;
 	private Action action;
 	private boolean on;
-	private static int width = 100;
-	private static int height = 100;
+	private static int width = 50;
+	private static int height = 50;
 
 	public ButtonJoseph() {
 		super(0, 0, width, height);
-		// TODO Auto-generated constructor stub
+		on=false;
 	}
 
 	@Override
@@ -63,10 +63,10 @@ public class ButtonJoseph extends Component implements ButtonInterfaceKat {
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 		if(on){
-			g.setColor(Color.white);
+			g.setColor(Color.lightGray);
 			g.fillOval(0, 0, getWidth(), getHeight());
 		}else{
-			g.setColor(Color.black);
+			g.setColor(color);
 			g.fillOval(0, 0, getWidth(), getHeight());
 		}
 		

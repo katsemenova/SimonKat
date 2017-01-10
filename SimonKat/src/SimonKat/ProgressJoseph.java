@@ -1,6 +1,7 @@
 package SimonKat;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
@@ -10,13 +11,13 @@ public class ProgressJoseph extends Component implements ProgressInterfaceKat {
 
 	private static int width = 100;
 	private static int height = 100;
-	private boolean gameOver = false;
+	private boolean gameOver;
 	private int setRound;
 	private int setSequenceSize;
 	
 	public ProgressJoseph() {
-		super(50, 50, width, height);
-		// TODO Auto-generated constructor stub
+		super(30, 30, width, height);
+		
 	}  
 
 	@Override
@@ -40,15 +41,18 @@ public class ProgressJoseph extends Component implements ProgressInterfaceKat {
 	@Override
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.white);
-		g.fillRect(100, 100, width, height);
+		g.setColor(Color.lightGray);
+		g.fillRect(0, 0, width, height);
+		int fontSize = 15;
+	    g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
 		g.setColor(Color.black);
+		
 		if(!gameOver){
-			g.drawString("Round "+ setRound, getX(), getY());
-			g.drawString("Sequence "+ setSequenceSize, getX(), getY());
+			g.drawString("Round "+ setRound, 20, 35);
+			g.drawString("Sequence "+ setSequenceSize, 20, 55);
 		}
 		else{
-			g.drawString("Game over", getX(),getY());
+			g.drawString("Game over", 35,110);
 		}
 	}
 

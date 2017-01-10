@@ -38,9 +38,11 @@ public class SimonScreenKat extends ClickableScreen implements Runnable {
 		moves.add(randomMove());
 		progress.setRound(roundNumber);
 		progress.setSequenceSize(moves.size());
+		
 		changeText("Simon's turn!");
 		txtLabel.setText("");
 		playSequence();
+		changeText("Your turn");
 		acceptingInput=true;
 		sequenceIndex=0;
 	}
@@ -51,23 +53,24 @@ public class SimonScreenKat extends ClickableScreen implements Runnable {
 			if(b!=null)
 				b.dim();
 			
-			b=moves.get(sequenceIndex).getButton();
+			b=moves.get(i).getButton();
 			b.highlight();
 			int sleepTime=1000*(int)Math.exp(roundNumber);
 			try {
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		}
 		b.dim();
+		
 	}
 
 	private void changeText(String string) {
 		try {
 			txtLabel.setText(string);
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,50 +79,53 @@ public class SimonScreenKat extends ClickableScreen implements Runnable {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons();
+		addButtons(viewObjects);
 		progress = getProgress();
-		txtLabel = new TextLabel(130,230,300,40,"Let's play Simon!");
+		txtLabel = new TextLabel(200,270,300,40,"Let's play Simon!");
 		moves = new ArrayList<MoveInterfaceKat>();
 		//add 2 moves to start
 		lastSelectedButton = -1;
 		moves.add(randomMove());
 		moves.add(randomMove());
 		roundNumber = 0;
-		viewObjects.add(progress);
 		viewObjects.add(txtLabel);
+		viewObjects.add(progress);
+		
 	}
 
 	public MoveInterfaceKat randomMove() {
-		ButtonInterfaceKat b;
+		ButtonInterfaceKat b=null;
 		int randomNumber;
 		while(true){
-			randomNumber=(int)Math.random()*(button.length-1);
-			b=button[randomNumber];
-			if(b!=button[lastSelectedButton]);
+			randomNumber=(int)(Math.random()*(button.length));
+			
+			if(randomNumber!=lastSelectedButton);
 				break;
 		}
+		b=button[randomNumber];
 		lastSelectedButton=randomNumber;
 		return getMove(b);
 	}
 
 	public MoveInterfaceKat getMove(ButtonInterfaceKat b) {
-		// TODO Auto-generated method stub
-		return null;
+		return new MoveJoseph(b);
 	}
 
 	public ProgressInterfaceKat getProgress() {
-		// placeholder
-		return null;
+		return new ProgressJoseph();
 	}
 
-	public void addButtons() {
+	public void addButtons(ArrayList<Visible> viewObjects) {
 		int numberOfButtons=6;
-		Color[] color={Color.blue,Color.pink,Color.green,Color.orange,Color.yellow,Color.black};
+		Color[] color={ Color.blue, Color.black, Color.red, Color.green, Color.orange, Color.cyan };
+		button = new ButtonInterfaceKat[numberOfButtons];
 		for(int i=0;i<numberOfButtons;i++){
-			final ButtonInterfaceKat b = getAButton();
-			b.setColor(color[i]);
-			b.setX(getWidth()/2+100*(int)Math.cos(Math.PI/3*(i)));
-			b.setY(getHeight()/2+100*(int)Math.sin(Math.PI/3*(i)));
+			button[i]=getAButton();
+			button[i].setColor(color[i]);
+			button[i].setX(110+i*50);
+			button[i].setY(200);
+			final ButtonInterfaceKat b = button[i];
+			b.dim();
 			b.setAction(new Action(){
 				public void act(){
 					Thread blink = new Thread(new Runnable(){
@@ -128,7 +134,7 @@ public class SimonScreenKat extends ClickableScreen implements Runnable {
 							b.highlight();
 							
 							try {
-								Thread.sleep(800);
+								Thread.sleep(400);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -158,14 +164,14 @@ public class SimonScreenKat extends ClickableScreen implements Runnable {
 
 				
 			});
-			viewObjects.add(b);
+			viewObjects.add(button[i]);
 		}
 	}
 
 	
 	private ButtonInterfaceKat getAButton() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new ButtonJoseph();
 	}
 
 }

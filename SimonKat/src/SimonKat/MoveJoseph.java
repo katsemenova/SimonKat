@@ -10,7 +10,7 @@ public class MoveJoseph implements MoveInterfaceKat {
 
 	@Override
 	public ButtonInterfaceKat getButton() {
-		// TODO Auto-generated method stub
+		
 		return b;
 	}
 
