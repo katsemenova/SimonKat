@@ -43,7 +43,7 @@ public class ButtonJoseph extends Component implements ButtonInterfaceKat {
 
 	@Override
 	public void setAction(Action a) {
-		this.action = action;
+		this.action = a;
 		update();
 	}
 
