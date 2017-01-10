@@ -2,13 +2,13 @@ package SimonKat;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import guiPractice.components.Action;
 import guiPractice.components.Component;
 
 public class ButtonJoseph extends Component implements ButtonInterfaceKat {
 
-	private Object act;
 	private Color color;
 	private Action action;
 	private boolean on;
@@ -22,14 +22,17 @@ public class ButtonJoseph extends Component implements ButtonInterfaceKat {
 
 	@Override
 	public void act() {
-		this.act = act;
-		update();
+		action.act();
 	}
 
 	@Override
-	public boolean isHovered(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isHovered(int x, int y) {
+		if(x > getX() && y > getY() && x < (getX()+getWidth()) && y < (getY()+getHeight())){
+			return true;
+		}	
+		else{
+			return false;
+		}
 	}
 
 	@Override
@@ -54,16 +57,19 @@ public class ButtonJoseph extends Component implements ButtonInterfaceKat {
 	public void dim() {
 		on = false;
 		update();
-	}
+	} 
 
 	@Override
-	public void update(Graphics2D arg0) {
+	public void update(Graphics2D g) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 		if(on){
-			
+			g.setColor(Color.white);
+			g.fillOval(0, 0, getWidth(), getHeight());
+		}else{
+			g.setColor(Color.black);
+			g.fillOval(0, 0, getWidth(), getHeight());
 		}
-		else{
-			
-		}
+		
 	}
-
+   
 }
